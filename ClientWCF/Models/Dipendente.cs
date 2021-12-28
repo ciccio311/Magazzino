@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientWCF.ServiceReference1;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -28,6 +29,15 @@ namespace ClientWCF.Models
 
         public bool amministratore { get; set; }
 
+        public void convertiServerToCLient(DipendenteServer ds)
+        {
+            this.id = ds.id;
+            this.nome = ds.nome;
+            this.password = ds.password;
+            this.cognome = ds.cognome;
+            this.telefono = ds.telefono;
+            this.amministratore = ds.amministratore;
+        }
 
     }
 }

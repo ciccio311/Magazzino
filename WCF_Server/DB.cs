@@ -15,43 +15,61 @@ namespace WCF_Server
         private string passw = ";";
         private string address = "127.0.0.1;";
 
+
+        //stringa di connessione al DB
         public string connectstring()
         {
+            //string con = "server=localhost;database=magazzino;uid=root;pwd='';";
             string con = "datasource=" + address + "port=" + port + "username=" + user + "password=" + passw + "database=" + name;
 
             return con;
         }
 
+        //connessione a MysqlConnection
         public MySqlConnection getsqlconnect(string c)
         {
             MySqlConnection dbconnect = new MySqlConnection(c);
             return dbconnect;
         }
 
-        public int accessoutenti(MySqlConnection x, int n, string p)
+        public DipendenteServer accessoutenti(MySqlConnection x, string n, string p)
         {
+            Console.WriteLine("GUARDA N: " + n);
+
             try
             {
+                DipendenteServer ds1 = new DipendenteServer();
 
-                x.Open();
+                //apertura connessione al DB
+                x.Open(); 
 
                 using (MySqlCommand command1 = x.CreateCommand())
                 {
 
-                    command1.CommandText = "SELECT DIPENDENTE.ID FROM UTENTE WHERE DIPENDENTE.ID='" + n + "' AND DIPENDENTE.Password='" + p + "';";
+                    command1.CommandText = "SELECT DIPENDENTE.IDDIPENDENTE,DIPENDENTE.NOME," +
+                        "DIPENDENTE.COGNOME,DIPENDENTE.TELEFONO,DIPENDENTE.PASSWORD," +
+                        " FROM DIPENDENTE " +
+                        "WHERE DIPENDENTE.Nome='" + n + "' AND DIPENDENTE.Password='" + p + "';";
 
                     using (MySqlDataReader reader = command1.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            var id = reader.GetInt32(0);
+                            //legge i risultati ottenuti dalla query, in questo caso ritorna solo l id
+                            //di chi ha fatto l accesso 
+                            ds1.id = reader.GetInt32(0);
+                            ds1.nome = reader.GetString(1);
+                            ds1.cognome = reader.GetString(2);
+                            ds1.telefono = reader.GetString(3);
+                            ds1.password = reader.GetString(4);
+                            ds1.amministratore = false;
 
-                            x.Close();
-                            return id;
+                            x.Close(); //chiudiamo la connessione al DB
+                            return ds1;
 
                         }
                         x.Close();
-                        return 0;
+                        return null;
                     }
 
                 }
@@ -59,9 +77,9 @@ namespace WCF_Server
             }
             catch (Exception e)
             {
-
+                Console.WriteLine("ERRORE: " + e.ToString());
                 x.Close();
-                return 0;
+                return null;
             }
         }
     }

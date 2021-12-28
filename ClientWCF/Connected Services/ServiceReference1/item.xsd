@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WCF_Server/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCF_Server" />
   <xs:element name="DoWork">
     <xs:complexType>
       <xs:sequence />
@@ -18,6 +19,21 @@
   <xs:element name="DoWork2Response">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Login">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="pswd" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCF_Server" minOccurs="0" name="LoginResult" nillable="true" type="q1:DipendenteServer" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

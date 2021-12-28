@@ -6,8 +6,22 @@ using System.Threading.Tasks;
 
 namespace WCF_Server
 {
-    class DipendenteServer
+    public class DipendenteServer
     {
+        public DipendenteServer()
+        {
+
+        }
+
+        public DipendenteServer(int ids, string n, string cogn, string tel, string psw, bool ceo)
+        {
+            this.id = ids;
+            this.nome = n;
+            this.cognome = cogn;
+            this.telefono = tel;
+            this.password = psw;
+            this.amministratore = ceo;
+        }
 
         public int id { get; set; }
 

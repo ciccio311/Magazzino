@@ -16,5 +16,8 @@ namespace WCF_Server
 
         [OperationContract]
         void DoWork2();
+
+        [OperationContract]
+       DipendenteServer Login(string id, string pswd);
     }
 }

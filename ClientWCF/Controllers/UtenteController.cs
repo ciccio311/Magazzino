@@ -26,11 +26,23 @@ namespace ClientWCF.Controllers
         {
             if (ModelState.IsValid)
             {
+                
+                
                 //connessione col service
-                //gli mandiamo le credenziali e lui controlla se 
-                //c'è un utente con quelle credenziali, se c'è ci invia i dati dell utente
+                try
+                {
+                    var wcf = new ServiceReference1.Service1Client();
 
-                return View("MenuUtente");
+                    //gli mandiamo le credenziali e lui controlla se 
+                    //c'è un utente con quelle credenziali, se c'è ci invia i dati dell utente
+                    ut.convertiServerToCLient(wcf.Login(ut.nome, ut.password));
+                    
+                    return View("MenuUtente",ut);
+                }catch(Exception e)
+                {
+                    Console.WriteLine("ERRORE: " + e.ToString());
+                    return View();
+                }
             }
                 return View(ut);
         }
