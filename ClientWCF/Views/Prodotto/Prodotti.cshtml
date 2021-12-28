@@ -1,0 +1,33 @@
+﻿@model ClientWCF.Models.ListaProdotti
+@{
+    ViewBag.Title = "Prodotti";
+}
+
+<h2>Prodotti</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@{
+    foreach (var i in Model.listaProducts)
+    {
+
+
+        @Html.Label("Id: " + i.id)
+        <br />
+        @Html.Label("Nome: " + i.nome)
+        <br />
+        @Html.Label("Prezzo: " + i.prezzo)
+        <br />
+        @Html.Label("Produttore: " + i.produttore)
+        <br />
+        @Html.Label("Categoria: " + i.categoria)
+        <br />
+        @Html.Label("Quantità " + i.quantità)
+        <br />
+
+        @Html.Label("-------------")
+        <br />
+
+    }
+}
