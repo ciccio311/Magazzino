@@ -19,5 +19,8 @@ namespace WCF_Server
 
         [OperationContract]
        DipendenteServer Login(string id, string pswd);
+
+        [OperationContract]
+        ListaProdottiServer getListaProdotti();
     }
 }

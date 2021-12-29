@@ -19,7 +19,6 @@ namespace WCF_Server
         //stringa di connessione al DB
         public string connectstring()
         {
-            //string con = "server=localhost;database=magazzino;uid=root;pwd='';";
             string con = "datasource=" + address + "port=" + port + "username=" + user + "password=" + passw + "database=" + name;
 
             return con;
@@ -34,8 +33,6 @@ namespace WCF_Server
 
         public DipendenteServer accessoutenti(MySqlConnection x, string n, string p)
         {
-            Console.WriteLine("GUARDA N: " + n);
-
             try
             {
                 DipendenteServer ds1 = new DipendenteServer();
@@ -47,7 +44,7 @@ namespace WCF_Server
                 {
 
                     command1.CommandText = "SELECT DIPENDENTE.IDDIPENDENTE,DIPENDENTE.NOME," +
-                        "DIPENDENTE.COGNOME,DIPENDENTE.TELEFONO,DIPENDENTE.PASSWORD," +
+                        "DIPENDENTE.COGNOME,DIPENDENTE.TELEFONO,DIPENDENTE.PASSWORD" +
                         " FROM DIPENDENTE " +
                         "WHERE DIPENDENTE.Nome='" + n + "' AND DIPENDENTE.Password='" + p + "';";
 
@@ -79,6 +76,51 @@ namespace WCF_Server
             {
                 Console.WriteLine("ERRORE: " + e.ToString());
                 x.Close();
+                return null;
+            }
+        }
+
+        public ListaProdottiServer getListaProdotti(MySqlConnection x)
+        {
+            try
+            {
+                ListaProdottiServer lps = new ListaProdottiServer();
+                x.Open();              
+                using (MySqlCommand command1 = x.CreateCommand())
+                {
+
+                    command1.CommandText = "SELECT * " +
+                    "FROM PRODOTTO ;";
+
+                    using (MySqlDataReader reader = command1.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //legge i risultati ottenuti dalla query, in questo caso ritorna i prodotti
+                           
+                            var id = reader.GetInt32(0);
+                            var nome = reader.GetString(1);
+                            var idProduttore = reader.GetInt32(2);
+                            var idCat = reader.GetInt32(3);
+                            var prezzo = reader.GetFloat(4);
+                            var quantita = reader.GetInt32(5);
+                            var posizione = reader.GetString(6);
+
+                            ProdottoServer ps = new ProdottoServer(id, nome, idProduttore,prezzo, idCat, quantita, posizione);
+                            lps.listaProducts.Add(ps);
+
+                        }
+                        x.Close();
+                        return lps;
+                    }
+
+                    x.Close();
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERRORE: " + e.ToString());
                 return null;
             }
         }

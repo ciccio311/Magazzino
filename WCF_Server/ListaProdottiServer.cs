@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WCF_Server
 {
-    class ListaProdottiServer
+    public class ListaProdottiServer
     {
         public ListaProdottiServer()
         {

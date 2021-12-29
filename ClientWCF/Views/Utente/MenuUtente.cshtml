@@ -1,7 +1,7 @@
 ﻿@model ClientWCF.Models.Dipendente
 
 @{
-    ViewBag.Title = "MenuUtente";
+    ViewBag.Title = "Utente";
 }
 
 <h2>MenuUtente</h2>
@@ -52,7 +52,7 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+      <p>
+           @Html.ActionLink("Edit", "Edit", new { id = Model.id })
+           @Html.ActionLink("prodotti", "Prodotti", "Prodotto")
+      </p>

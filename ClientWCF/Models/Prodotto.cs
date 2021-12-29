@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientWCF.ServiceReference1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,5 +16,17 @@ namespace ClientWCF.Models
         public int categoria { get; set; }
 
         public int quantità { get; set; }
+        public string posizione { get; set; }
+
+        public void convertiServerToCLient(ProdottoServer ds)
+        {
+            this.id = ds.id;
+            this.nome = ds.nome;
+            this.produttore = ds.produttore;
+            this.prezzo = ds.prezzo;
+            this.categoria = ds.categoria;
+            this.quantità = ds.quantita;
+            this.posizione = ds.posizione;
+        }
     }
 }

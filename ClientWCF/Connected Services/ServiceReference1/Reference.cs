@@ -138,6 +138,192 @@ namespace ClientWCF.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ListaProdottiServer", Namespace="http://schemas.datacontract.org/2004/07/WCF_Server")]
+    [System.SerializableAttribute()]
+    public partial class ListaProdottiServer : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ClientWCF.ServiceReference1.ProdottoServer[] listaProductsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ClientWCF.ServiceReference1.ProdottoServer[] listaProducts {
+            get {
+                return this.listaProductsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.listaProductsField, value) != true)) {
+                    this.listaProductsField = value;
+                    this.RaisePropertyChanged("listaProducts");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProdottoServer", Namespace="http://schemas.datacontract.org/2004/07/WCF_Server")]
+    [System.SerializableAttribute()]
+    public partial class ProdottoServer : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int categoriaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nomeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string posizioneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private float prezzoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int produttoreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int quantitaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int categoria {
+            get {
+                return this.categoriaField;
+            }
+            set {
+                if ((this.categoriaField.Equals(value) != true)) {
+                    this.categoriaField = value;
+                    this.RaisePropertyChanged("categoria");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nome {
+            get {
+                return this.nomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nomeField, value) != true)) {
+                    this.nomeField = value;
+                    this.RaisePropertyChanged("nome");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string posizione {
+            get {
+                return this.posizioneField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.posizioneField, value) != true)) {
+                    this.posizioneField = value;
+                    this.RaisePropertyChanged("posizione");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public float prezzo {
+            get {
+                return this.prezzoField;
+            }
+            set {
+                if ((this.prezzoField.Equals(value) != true)) {
+                    this.prezzoField = value;
+                    this.RaisePropertyChanged("prezzo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int produttore {
+            get {
+                return this.produttoreField;
+            }
+            set {
+                if ((this.produttoreField.Equals(value) != true)) {
+                    this.produttoreField = value;
+                    this.RaisePropertyChanged("produttore");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int quantita {
+            get {
+                return this.quantitaField;
+            }
+            set {
+                if ((this.quantitaField.Equals(value) != true)) {
+                    this.quantitaField = value;
+                    this.RaisePropertyChanged("quantita");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
@@ -159,6 +345,12 @@ namespace ClientWCF.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
         System.Threading.Tasks.Task<ClientWCF.ServiceReference1.DipendenteServer> LoginAsync(string id, string pswd);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getListaProdotti", ReplyAction="http://tempuri.org/IService1/getListaProdottiResponse")]
+        ClientWCF.ServiceReference1.ListaProdottiServer getListaProdotti();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getListaProdotti", ReplyAction="http://tempuri.org/IService1/getListaProdottiResponse")]
+        System.Threading.Tasks.Task<ClientWCF.ServiceReference1.ListaProdottiServer> getListaProdottiAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -210,6 +402,14 @@ namespace ClientWCF.ServiceReference1 {
         
         public System.Threading.Tasks.Task<ClientWCF.ServiceReference1.DipendenteServer> LoginAsync(string id, string pswd) {
             return base.Channel.LoginAsync(id, pswd);
+        }
+        
+        public ClientWCF.ServiceReference1.ListaProdottiServer getListaProdotti() {
+            return base.Channel.getListaProdotti();
+        }
+        
+        public System.Threading.Tasks.Task<ClientWCF.ServiceReference1.ListaProdottiServer> getListaProdottiAsync() {
+            return base.Channel.getListaProdottiAsync();
         }
     }
 }

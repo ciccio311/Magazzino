@@ -18,21 +18,35 @@ namespace ClientWCF.Controllers
         public ActionResult Prodotti()
         {
             ListaProdotti LP = new ListaProdotti();
-            Prodotto p1 = new Prodotto();
-            p1.nome = "cpu inel";
-            p1.prezzo = 159.9F;
-            p1.produttore = 1;
-            p1.categoria = 1;
-            p1.quantità = 10;
-            Prodotto p2 = new Prodotto();
-            p2.nome = "cpu amd";
-            p2.prezzo = 149.9F;
-            p2.produttore = 2;
-            p2.categoria = 1;
-            p2.quantità = 12;
+            if (ModelState.IsValid)
+            {
 
-            LP.listaProducts.Add(p1);
-            LP.listaProducts.Add(p2);
+
+                //connessione col service
+                try
+                {
+                    var wcf = new ServiceReference1.Service1Client();
+
+                    if (wcf.getListaProdotti() == null)
+                    {
+                        return Content("Non ci sono prodotti nel db!");
+                    }
+                    else
+                    {
+                       LP.ConvertServerList(wcf.getListaProdotti());
+                        return View(LP);
+                    }
+
+
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("ERRORE: " + e.ToString());
+                    return View();
+                }
+            }
+        
 
 
             return View(LP);

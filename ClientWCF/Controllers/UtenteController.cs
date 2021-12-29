@@ -35,9 +35,18 @@ namespace ClientWCF.Controllers
 
                     //gli mandiamo le credenziali e lui controlla se 
                     //c'è un utente con quelle credenziali, se c'è ci invia i dati dell utente
-                    ut.convertiServerToCLient(wcf.Login(ut.nome, ut.password));
+                    if (wcf.Login(ut.nome, ut.password) == null)
+                    {
+                        return Content("Mail o passw errati!");
+                    }
+                    else
+                    {
+                        ut.convertiServerToCLient(wcf.Login(ut.nome, ut.password));
+                        return View("MenuUtente", ut);
+                    }
+
                     
-                    return View("MenuUtente",ut);
+                    
                 }catch(Exception e)
                 {
                     Console.WriteLine("ERRORE: " + e.ToString());
