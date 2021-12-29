@@ -121,5 +121,83 @@ namespace WCF_Server
                 return null;
             }
         }
+
+
+        public ProdottoServer getProdottoById(MySqlConnection x, int n)
+        {
+            try
+            {
+                x.Open();
+                using (MySqlCommand command1 = x.CreateCommand())
+                {
+
+                    command1.CommandText = "SELECT * " +
+                    "FROM PRODOTTO " +
+                    "WHERE PRODOTTO.IDPRODOTTO =" + n + ";";
+
+                    using (MySqlDataReader reader = command1.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //legge i risultati ottenuti dalla query, in questo caso ritorna il prodotto cercato con id N
+                            var id = reader.GetInt32(0);
+                            var nome = reader.GetString(1);
+                            var idProduttore = reader.GetInt32(2);
+                            var idCat = reader.GetInt32(3);
+                            var prezzo = reader.GetFloat(4);
+                            var quantita = reader.GetInt32(5);
+                            var posizione = reader.GetString(6);
+
+                            ProdottoServer ps = new ProdottoServer(id, nome, idProduttore, prezzo, idCat, quantita, posizione);
+                            return ps;
+                        }
+                        x.Close();
+                    }
+
+                    x.Close();
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERRORE: " + e.ToString());
+                return null;
+            }
+        }
+
+
+        public List<String> getFreePosition(MySqlConnection x)
+        {
+            List<String> posti = new List<string>();
+            try
+            {
+                x.Open();
+                using (MySqlCommand command1 = x.CreateCommand())
+                {
+
+                    command1.CommandText = "SELECT * " +
+                    "FROM POSIZIONE " +
+                    "WHERE POSIZIONE.DISPONIBILE = 1;";
+
+                    using (MySqlDataReader reader = command1.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //legge i risultati ottenuti dalla query, in questo caso ritorna i posti disponibili
+                            posti.Add(reader.GetString(0));
+                        }
+                        x.Close();
+                        return posti;
+                    }
+                    x.Close();
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERRORE: " + e.ToString());
+                return null;
+            }
+        }
     }
 }

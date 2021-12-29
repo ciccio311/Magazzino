@@ -147,6 +147,9 @@
     <Content Include="Connected Services\ServiceReference1\ClientWCF.ServiceReference1.ListaProdottiServer.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\ServiceReference1\ClientWCF.ServiceReference1.ProdottoServer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\ServiceReference1\item.disco" />
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
@@ -154,6 +157,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference1\item11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference1\item2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference1\Reference.svcmap">
@@ -204,7 +210,7 @@
     <Content Include="Views\Utente\CancellaUtente.cshtml" />
     <Content Include="Views\Utente\Login.cshtml" />
     <Content Include="Views\Utente\MenuUtente.cshtml" />
-    <Content Include="Views\Prodotto\SpostaProdotto.cshtml" />
+    <Content Include="Views\Prodotto\AzioniProdotto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

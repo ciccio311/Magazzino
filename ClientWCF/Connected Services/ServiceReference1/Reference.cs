@@ -351,6 +351,18 @@ namespace ClientWCF.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getListaProdotti", ReplyAction="http://tempuri.org/IService1/getListaProdottiResponse")]
         System.Threading.Tasks.Task<ClientWCF.ServiceReference1.ListaProdottiServer> getListaProdottiAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getProdById", ReplyAction="http://tempuri.org/IService1/getProdByIdResponse")]
+        ClientWCF.ServiceReference1.ProdottoServer getProdById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getProdById", ReplyAction="http://tempuri.org/IService1/getProdByIdResponse")]
+        System.Threading.Tasks.Task<ClientWCF.ServiceReference1.ProdottoServer> getProdByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getFreePos", ReplyAction="http://tempuri.org/IService1/getFreePosResponse")]
+        string[] getFreePos();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getFreePos", ReplyAction="http://tempuri.org/IService1/getFreePosResponse")]
+        System.Threading.Tasks.Task<string[]> getFreePosAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -410,6 +422,22 @@ namespace ClientWCF.ServiceReference1 {
         
         public System.Threading.Tasks.Task<ClientWCF.ServiceReference1.ListaProdottiServer> getListaProdottiAsync() {
             return base.Channel.getListaProdottiAsync();
+        }
+        
+        public ClientWCF.ServiceReference1.ProdottoServer getProdById(int id) {
+            return base.Channel.getProdById(id);
+        }
+        
+        public System.Threading.Tasks.Task<ClientWCF.ServiceReference1.ProdottoServer> getProdByIdAsync(int id) {
+            return base.Channel.getProdByIdAsync(id);
+        }
+        
+        public string[] getFreePos() {
+            return base.Channel.getFreePos();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> getFreePosAsync() {
+            return base.Channel.getFreePosAsync();
         }
     }
 }

@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WCF_Server/Service1/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WCF_Server/Service1/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WCF_Server/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCF_Server" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/WCF_Server/Service1/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService1_DoWork_InputMessage">
@@ -31,6 +32,18 @@
   <wsdl:message name="IService1_getListaProdotti_OutputMessage">
     <wsdl:part name="parameters" element="tns:getListaProdottiResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_getProdById_InputMessage">
+    <wsdl:part name="parameters" element="tns:getProdById" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getProdById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getProdByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getFreePos_InputMessage">
+    <wsdl:part name="parameters" element="tns:getFreePos" />
+  </wsdl:message>
+  <wsdl:message name="IService1_getFreePos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getFreePosResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DoWork" message="tns:IService1_DoWork_InputMessage" />
@@ -47,6 +60,14 @@
     <wsdl:operation name="getListaProdotti">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/getListaProdotti" message="tns:IService1_getListaProdotti_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/getListaProdottiResponse" message="tns:IService1_getListaProdotti_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getProdById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getProdById" message="tns:IService1_getProdById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getProdByIdResponse" message="tns:IService1_getProdById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getFreePos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/getFreePos" message="tns:IService1_getFreePos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/getFreePosResponse" message="tns:IService1_getFreePos_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -80,6 +101,24 @@
     </wsdl:operation>
     <wsdl:operation name="getListaProdotti">
       <soap:operation soapAction="http://tempuri.org/IService1/getListaProdotti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProdById">
+      <soap:operation soapAction="http://tempuri.org/IService1/getProdById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFreePos">
+      <soap:operation soapAction="http://tempuri.org/IService1/getFreePos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

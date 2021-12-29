@@ -17,6 +17,7 @@
         <th style="text-align:center">Categoria</th>
         <th style="text-align:center">Quantità</th>
         <th style="text-align:center">Posizione</th>
+        <th style="text-align:center">Modifica</th>
     </tr>
     @{foreach (var i in Model.listaProducts)
         {
@@ -41,6 +42,9 @@
             </td>
             <td>
                 @i.posizione
+            </td>
+            <td>
+                @Html.ActionLink("Modifica", "AzioniProdotto", new { id = i.id } )
             </td>
         </tr>
         }

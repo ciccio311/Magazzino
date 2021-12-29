@@ -68,5 +68,49 @@ namespace WCF_Server
             }
 
         }
+
+
+        public ProdottoServer getProdById(int n)
+        {
+            ProdottoServer ps = new ProdottoServer();
+            try
+            {
+                //ci connettiamo al DB
+                var x = databse1.getsqlconnect(databse1.connectstring());
+
+                //ritorna la lista di prodotti
+                
+                ps = databse1.getProdottoById(x, n);
+
+                return ps;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Errore: " + e.ToString());
+                return null;
+            }
+        }
+
+
+        public List<String> getFreePos()
+        {
+            List<String> postiDisponibili = new List<string>();
+            try
+            {
+                //ci connettiamo al DB
+                var x = databse1.getsqlconnect(databse1.connectstring());
+
+                //ritorna la lista di prodotti
+                postiDisponibili = databse1.getFreePosition(x);
+
+                return postiDisponibili;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Errore: " + e.ToString());
+                return null;
+            }
+        }
     }
 }

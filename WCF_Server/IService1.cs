@@ -18,9 +18,15 @@ namespace WCF_Server
         void DoWork2();
 
         [OperationContract]
-       DipendenteServer Login(int id, string pswd);
+        DipendenteServer Login(int id, string pswd);
 
         [OperationContract]
         ListaProdottiServer getListaProdotti();
+
+        [OperationContract]
+        ProdottoServer getProdById(int id);
+
+        [OperationContract]
+        List<String> getFreePos();
     }
 }
