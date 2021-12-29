@@ -19,7 +19,7 @@ namespace WCF_Server
             Console.WriteLine("Ciao, sono dowork2!");
         }
 
-        public DipendenteServer Login(string id, string pswd)
+        public DipendenteServer Login(int id, string pswd)
         {
             DipendenteServer ds = new DipendenteServer();
 

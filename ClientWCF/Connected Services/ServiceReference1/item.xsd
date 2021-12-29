@@ -24,7 +24,7 @@
   <xs:element name="Login">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="id" type="xs:int" />
         <xs:element minOccurs="0" name="pswd" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>

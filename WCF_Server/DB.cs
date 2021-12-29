@@ -31,7 +31,7 @@ namespace WCF_Server
             return dbconnect;
         }
 
-        public DipendenteServer accessoutenti(MySqlConnection x, string n, string p)
+        public DipendenteServer accessoutenti(MySqlConnection x, int n, string p)
         {
             try
             {
@@ -43,10 +43,7 @@ namespace WCF_Server
                 using (MySqlCommand command1 = x.CreateCommand())
                 {
 
-                    command1.CommandText = "SELECT DIPENDENTE.IDDIPENDENTE,DIPENDENTE.NOME," +
-                        "DIPENDENTE.COGNOME,DIPENDENTE.TELEFONO,DIPENDENTE.PASSWORD" +
-                        " FROM DIPENDENTE " +
-                        "WHERE DIPENDENTE.Nome='" + n + "' AND DIPENDENTE.Password='" + p + "';";
+                    command1.CommandText = "SELECT * FROM `dipendente` WHERE dipendente.Password='" + p + "' AND dipendente.IDDipendente=" + n + ";";
 
                     using (MySqlDataReader reader = command1.ExecuteReader())
                     {

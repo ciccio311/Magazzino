@@ -8,27 +8,41 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@{
-    foreach (var i in Model.listaProducts)
-    {
-
-
-        @Html.Label("Id: " + i.id)
-        <br />
-        @Html.Label("Nome: " + i.nome)
-        <br />
-        @Html.Label("Prezzo: " + i.prezzo)
-        <br />
-        @Html.Label("Produttore: " + i.produttore)
-        <br />
-        @Html.Label("Categoria: " + i.categoria)
-        <br />
-        @Html.Label("Quantità " + i.quantità)
-        <br />
-        @Html.Label("Posizione " + i.posizione)
-        <br />
-        @Html.Label("-------------")
-        <br />
-
-    }
-}
+<table width="100%">
+    <tr>
+        <th style="text-align:center">ID</th>
+        <th style="text-align:center">Nome</th>
+        <th style="text-align:center">Prezzo</th>
+        <th style="text-align:center">Produttore</th>
+        <th style="text-align:center">Categoria</th>
+        <th style="text-align:center">Quantità</th>
+        <th style="text-align:center">Posizione</th>
+    </tr>
+    @{foreach (var i in Model.listaProducts)
+        {
+        <tr style="text-align:center">
+            <td>
+                @i.id
+            </td>
+            <td>
+                @i.nome
+            </td>
+            <td>
+                €@i.prezzo
+            </td>
+            <td>
+                @i.produttore
+            </td>
+            <td>
+                @i.categoria
+            </td>
+            <td>
+                @i.quantità
+            </td>
+            <td>
+                @i.posizione
+            </td>
+        </tr>
+        }
+      }
+</table>

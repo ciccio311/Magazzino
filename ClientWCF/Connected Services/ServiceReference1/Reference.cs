@@ -341,10 +341,10 @@ namespace ClientWCF.ServiceReference1 {
         System.Threading.Tasks.Task DoWork2Async();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
-        ClientWCF.ServiceReference1.DipendenteServer Login(string id, string pswd);
+        ClientWCF.ServiceReference1.DipendenteServer Login(int id, string pswd);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
-        System.Threading.Tasks.Task<ClientWCF.ServiceReference1.DipendenteServer> LoginAsync(string id, string pswd);
+        System.Threading.Tasks.Task<ClientWCF.ServiceReference1.DipendenteServer> LoginAsync(int id, string pswd);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getListaProdotti", ReplyAction="http://tempuri.org/IService1/getListaProdottiResponse")]
         ClientWCF.ServiceReference1.ListaProdottiServer getListaProdotti();
@@ -396,11 +396,11 @@ namespace ClientWCF.ServiceReference1 {
             return base.Channel.DoWork2Async();
         }
         
-        public ClientWCF.ServiceReference1.DipendenteServer Login(string id, string pswd) {
+        public ClientWCF.ServiceReference1.DipendenteServer Login(int id, string pswd) {
             return base.Channel.Login(id, pswd);
         }
         
-        public System.Threading.Tasks.Task<ClientWCF.ServiceReference1.DipendenteServer> LoginAsync(string id, string pswd) {
+        public System.Threading.Tasks.Task<ClientWCF.ServiceReference1.DipendenteServer> LoginAsync(int id, string pswd) {
             return base.Channel.LoginAsync(id, pswd);
         }
         
