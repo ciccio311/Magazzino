@@ -113,7 +113,7 @@ namespace WCF_Server
             }
         }
 
-        public bool updateProduct(int id, int quant, string pos)
+        public bool updateProduct(int id, int quant, string pos,int idDip, string desc, string date)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace WCF_Server
                 var x = databse1.getsqlconnect(databse1.connectstring());
 
                 //ritorna la lista di prodotti
-                if (databse1.ProductUpdate(x, id, quant, pos))
+                if (databse1.ProductUpdate(x, id, quant, pos,idDip,desc,date))
                 {
                     return true;
                 }

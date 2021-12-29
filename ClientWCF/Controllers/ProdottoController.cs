@@ -67,8 +67,10 @@ namespace ClientWCF.Controllers
                 try
                 {
                     var wcf = new ServiceReference1.Service1Client();
+                    int i = (int)Session["ID"];
+                    string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
                     //controllo che ritorni un prodotto
-                    if (wcf.updateProduct(p1.id, p1.quantità, p1.posizione))
+                    if (wcf.updateProduct(p1.id, p1.quantità, p1.posizione,i,"Aggiornamento",date))
                     {
                         return Content("UPDATE");
                     }

@@ -200,7 +200,7 @@ namespace WCF_Server
             }
         }
 
-        public bool ProductUpdate(MySqlConnection x, int id, int quant, string pos)
+        public bool ProductUpdate(MySqlConnection x, int id, int quant, string pos, int idDip, string desc, string date)
         {
             try
             {
@@ -227,6 +227,11 @@ namespace WCF_Server
                                                         "FROM posizione, prodotto " +
                                                         "WHERE posizione.IDPosizione = prodotto.IDPosizione AND prodotto.IDProdotto =" + id + ");";
                     command1.ExecuteNonQuery();
+
+                    command1.CommandText = "INSERT INTO operazione(IDOperazione, IDDipendente, Data, Descrizione, IDProdotto)VALUES(null," + idDip + ", '" + date + "', '" + desc + "'," + id + ");";
+                    command1.ExecuteNonQuery();
+
+
                     x.Close();
 
                     return true;

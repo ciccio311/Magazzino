@@ -365,10 +365,10 @@ namespace ClientWCF.ServiceReference1 {
         System.Threading.Tasks.Task<string[]> getFreePosAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/updateProduct", ReplyAction="http://tempuri.org/IService1/updateProductResponse")]
-        bool updateProduct(int id, int quant, string pos);
+        bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/updateProduct", ReplyAction="http://tempuri.org/IService1/updateProductResponse")]
-        System.Threading.Tasks.Task<bool> updateProductAsync(int id, int quant, string pos);
+        System.Threading.Tasks.Task<bool> updateProductAsync(int id, int quant, string pos, int idDip, string desc, string date);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -446,12 +446,12 @@ namespace ClientWCF.ServiceReference1 {
             return base.Channel.getFreePosAsync();
         }
         
-        public bool updateProduct(int id, int quant, string pos) {
-            return base.Channel.updateProduct(id, quant, pos);
+        public bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date) {
+            return base.Channel.updateProduct(id, quant, pos, idDip, desc, date);
         }
         
-        public System.Threading.Tasks.Task<bool> updateProductAsync(int id, int quant, string pos) {
-            return base.Channel.updateProductAsync(id, quant, pos);
+        public System.Threading.Tasks.Task<bool> updateProductAsync(int id, int quant, string pos, int idDip, string desc, string date) {
+            return base.Channel.updateProductAsync(id, quant, pos, idDip, desc, date);
         }
     }
 }

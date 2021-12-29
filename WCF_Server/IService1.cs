@@ -31,6 +31,6 @@ namespace WCF_Server
 
 
         [OperationContract]
-        bool updateProduct(int id, int quant, string pos);
+        bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date);
     }
 }
