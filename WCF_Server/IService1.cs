@@ -28,5 +28,9 @@ namespace WCF_Server
 
         [OperationContract]
         List<String> getFreePos();
+
+
+        [OperationContract]
+        bool updateProduct(int id, int quant, string pos);
     }
 }

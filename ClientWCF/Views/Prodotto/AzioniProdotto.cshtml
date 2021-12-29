@@ -33,15 +33,16 @@
                     List<SelectListItem> listItems = new List<SelectListItem>();
                     foreach (var x in ViewBag.data)
                     {
-                            listItems.Add(new SelectListItem
-                            {
-                                Text = x, Value = x
-                            });
-                        }
-                    
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = x,
+                            Value = x
+                        });
+                    }
+
                 }
 
-                @Html.DropDownList("ciao", listItems, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.posizione, listItems, new { @class = "form-control" })
             </div>
             </div>
 

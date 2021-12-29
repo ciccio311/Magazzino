@@ -199,5 +199,45 @@ namespace WCF_Server
                 return null;
             }
         }
+
+        public bool ProductUpdate(MySqlConnection x, int id, int quant, string pos)
+        {
+            try
+            {
+                x.Open();
+                using (MySqlCommand command1 = x.CreateCommand())
+                {
+                    //Mettiamo la vecchia posizione del prodotto come disponibile
+                    command1.CommandText = "UPDATE posizione SET Disponibile=1 " +
+                              "WHERE posizione.IDPosizione = (SELECT posizione.IDPosizione " +
+                              "FROM posizione, prodotto " +
+                              "WHERE posizione.IDPosizione = prodotto.IDPosizione AND prodotto.IDProdotto =" + id + ");";
+                    command1.ExecuteNonQuery();
+
+                    //aggiorniamo la posizione e la quantità
+                    command1.CommandText = "UPDATE prodotto SET Quantita=@Quantita,IDPosizione=@Posizione WHERE IDProdotto=@IDProdotto;";
+                    command1.Parameters.AddWithValue("@Quantita", quant);
+                    command1.Parameters.AddWithValue("@Posizione", pos);
+                    command1.Parameters.AddWithValue("@IDProdotto", id);
+                    command1.ExecuteNonQuery();
+
+                    //mettiamo la nuova posizione del prodotto non disponibile
+                    command1.CommandText = "UPDATE posizione SET Disponibile=0 " +
+                       "WHERE posizione.IDPosizione = (SELECT posizione.IDPosizione " +
+                                                        "FROM posizione, prodotto " +
+                                                        "WHERE posizione.IDPosizione = prodotto.IDPosizione AND prodotto.IDProdotto =" + id + ");";
+                    command1.ExecuteNonQuery();
+                    x.Close();
+
+                    return true;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERRORE: " + e.ToString());
+                return false;
+            }
+        }
     }
 }

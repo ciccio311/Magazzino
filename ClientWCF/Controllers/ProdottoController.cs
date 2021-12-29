@@ -34,9 +34,47 @@ namespace ClientWCF.Controllers
                     {
                         //converto il prodotto da server a client e chiamo la view con il prodotto client
                         p.convertiServerToCLient(wcf.getProdById(id));
-                        ViewBag.data = wcf.getFreePos();
+
+                        //Creo una lista di stringhe ed aggiungo posizione corrente del prodotto + quelle disponibili
+                        List<String> posizioni = new List<string>();
+                        posizioni.Add(p.posizione);
+                        foreach(var z in wcf.getFreePos())
+                        {
+                            posizioni.Add(z);
+                        }
+
+                        ViewBag.data = posizioni;
                         ViewBag.Message = p.nome;
                         return View(p);
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("ERRORE: " + e.ToString());
+                    return View();
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AzioniProdotto(Prodotto p1)
+        {
+            if (ModelState.IsValid)
+            {
+                //connessione col service
+                try
+                {
+                    var wcf = new ServiceReference1.Service1Client();
+                    //controllo che ritorni un prodotto
+                    if (wcf.updateProduct(p1.id, p1.quantità, p1.posizione))
+                    {
+                        return Content("UPDATE");
+                    }
+                    else
+                    {
+                        return Content("CAZZO");
                     }
 
                 }

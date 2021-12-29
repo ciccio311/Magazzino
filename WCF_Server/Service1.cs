@@ -112,5 +112,29 @@ namespace WCF_Server
                 return null;
             }
         }
+
+        public bool updateProduct(int id, int quant, string pos)
+        {
+            try
+            {
+                //ci connettiamo al DB
+                var x = databse1.getsqlconnect(databse1.connectstring());
+
+                //ritorna la lista di prodotti
+                if (databse1.ProductUpdate(x, id, quant, pos))
+                {
+                    return true;
+                }
+                else
+                    return false;
+
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Errore: " + e.ToString());
+                return false;
+            }
+        }
     }
 }

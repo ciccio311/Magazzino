@@ -44,6 +44,12 @@
   <wsdl:message name="IService1_getFreePos_OutputMessage">
     <wsdl:part name="parameters" element="tns:getFreePosResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_updateProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateProduct" />
+  </wsdl:message>
+  <wsdl:message name="IService1_updateProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateProductResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DoWork" message="tns:IService1_DoWork_InputMessage" />
@@ -68,6 +74,10 @@
     <wsdl:operation name="getFreePos">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/getFreePos" message="tns:IService1_getFreePos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/getFreePosResponse" message="tns:IService1_getFreePos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/updateProduct" message="tns:IService1_updateProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/updateProductResponse" message="tns:IService1_updateProduct_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -119,6 +129,15 @@
     </wsdl:operation>
     <wsdl:operation name="getFreePos">
       <soap:operation soapAction="http://tempuri.org/IService1/getFreePos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProduct">
+      <soap:operation soapAction="http://tempuri.org/IService1/updateProduct" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
