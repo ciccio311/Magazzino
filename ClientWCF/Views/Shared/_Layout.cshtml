@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    <title>@ViewBag.Title - Applicazione Management ZaMa</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,24 +17,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Magazzino X s.r.l.", "Login", "Utente", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Magazzino ZaMa s.r.l.", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Prodotti", "Prodotti", "Prodotto")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Utente")</li>
-                    <li>@Html.ActionLink("Informazioni", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contatto", "Contact", "Home")</li>
-                </ul>
-            </div>
+
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Applicazione Management Magazzino</p>
         </footer>
     </div>
 

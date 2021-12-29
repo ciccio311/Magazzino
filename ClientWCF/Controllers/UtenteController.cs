@@ -37,12 +37,14 @@ namespace ClientWCF.Controllers
                     //c'è un utente con quelle credenziali, se c'è ci invia i dati dell utente
                     if (wcf.Login(ut.id, ut.password) == null)
                     {
+
                         ViewBag.Message = "ID o password errati!";
                         return View();
                     }
                     else
                     {
                         ut.convertiServerToCLient(wcf.Login(ut.id, ut.password));
+                        Session["ID"] = ut.id;
                         return View("MenuUtente", ut);
                     }
 
