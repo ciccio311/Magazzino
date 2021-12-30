@@ -44,9 +44,19 @@
             <td>
                 @i.posizione
             </td>
-            <td>
-                @Html.ActionLink("Modifica", "AzioniProdotto", new { id = i.id })
-            </td>
+            @if ((int)Session["CEO"] == 1)
+            {
+                <td>
+                    @Html.ActionLink("Modifica", "ModificaProdotto", new { id = i.id })
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.ActionLink("Modifica", "AzioniProdotto", new { id = i.id })
+                </td>
+            }
+            
             @if ((int)Session["CEO"] == 1)
             {
                 <td>
