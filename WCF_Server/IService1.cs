@@ -39,6 +39,9 @@ namespace WCF_Server
         bool CreaProdotto(ProdottoServer ps);
 
         [OperationContract]
+        bool EliminaProdotto(ProdottoServer ps);
+
+        [OperationContract]
         bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date);
 
         [OperationContract]

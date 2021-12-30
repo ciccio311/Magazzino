@@ -382,6 +382,12 @@ namespace ClientWCF.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreaProdotto", ReplyAction="http://tempuri.org/IService1/CreaProdottoResponse")]
         System.Threading.Tasks.Task<bool> CreaProdottoAsync(ClientWCF.ServiceReference1.ProdottoServer ps);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/EliminaProdotto", ReplyAction="http://tempuri.org/IService1/EliminaProdottoResponse")]
+        bool EliminaProdotto(ClientWCF.ServiceReference1.ProdottoServer ps);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/EliminaProdotto", ReplyAction="http://tempuri.org/IService1/EliminaProdottoResponse")]
+        System.Threading.Tasks.Task<bool> EliminaProdottoAsync(ClientWCF.ServiceReference1.ProdottoServer ps);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/updateProduct", ReplyAction="http://tempuri.org/IService1/updateProductResponse")]
         bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date);
         
@@ -492,6 +498,14 @@ namespace ClientWCF.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> CreaProdottoAsync(ClientWCF.ServiceReference1.ProdottoServer ps) {
             return base.Channel.CreaProdottoAsync(ps);
+        }
+        
+        public bool EliminaProdotto(ClientWCF.ServiceReference1.ProdottoServer ps) {
+            return base.Channel.EliminaProdotto(ps);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EliminaProdottoAsync(ClientWCF.ServiceReference1.ProdottoServer ps) {
+            return base.Channel.EliminaProdottoAsync(ps);
         }
         
         public bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date) {

@@ -113,6 +113,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="EliminaProdotto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCF_Server" minOccurs="0" name="ps" nillable="true" type="q8:ProdottoServer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminaProdottoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EliminaProdottoResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="updateProduct">
     <xs:complexType>
       <xs:sequence>

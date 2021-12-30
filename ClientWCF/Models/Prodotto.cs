@@ -10,10 +10,13 @@ namespace ClientWCF.Models
     public class Prodotto
     {
         public int id { get; set; }
+        [Display(Name = "Nome")]
         public string nome { get; set; }
-
+        [Display(Name = "Produttore")]
         public int produttore { get; set; }
+        [Display(Name = "Prezzo")]
         public float prezzo { get; set; }
+        [Display(Name = "Categoria")]
         public int categoria { get; set; }
         [Display(Name="Quantità")]
         public int quantità { get; set; }

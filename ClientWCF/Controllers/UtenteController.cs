@@ -94,8 +94,9 @@ namespace ClientWCF.Controllers
 
                     if (wcf.CreaUtente(dp.nome, dp.cognome, dp.telefono, dp.password, ceo))
                     {
-                        return Content("CREATO");
-                    }else
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
                         return Content("CAZZO");
                 }
                 catch (Exception e)

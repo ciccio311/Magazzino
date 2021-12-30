@@ -15,6 +15,10 @@
         <th style="text-align:center">Quantità</th>
         <th style="text-align:center">Posizione</th>
         <th style="text-align:center">Modifica</th>
+        @if ((int)Session["CEO"] == 1)
+        {
+            <th style="text-align:center">Elimina</th>
+        }
     </tr>
     @{foreach (var i in Model.listaProducts)
         {
@@ -29,10 +33,10 @@
                 €@i.prezzo
             </td>
             <td>
-                @ViewBag.produttori[i.produttore-1]
+                @ViewBag.produttori[i.produttore - 1]
             </td>
             <td>
-                @ViewBag.categorie[i.categoria-1]
+                @ViewBag.categorie[i.categoria - 1]
             </td>
             <td>
                 @i.quantità
@@ -41,8 +45,14 @@
                 @i.posizione
             </td>
             <td>
-                @Html.ActionLink("Modifica", "AzioniProdotto", new { id = i.id } )
+                @Html.ActionLink("Modifica", "AzioniProdotto", new { id = i.id })
             </td>
+            @if ((int)Session["CEO"] == 1)
+            {
+                <td>
+                    @Html.ActionLink("Elimina", "EliminaProdotto", new { id = i.id })
+                </td>
+            }
         </tr>
         }
       }

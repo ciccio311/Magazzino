@@ -184,7 +184,33 @@ namespace ClientWCF.Controllers
 
                     if (wcf.CreaProdotto(ProductToServer))
                     {
-                        return Content("CREATO");
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                        return Content("CAZZO");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("ERRORE: " + e.ToString());
+                    return View();
+                }
+            }
+            return View("CAZZO");
+        }
+
+
+        public ActionResult EliminaProdotto(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                //connessione col service
+                try
+                {
+                    var wcf = new ServiceReference1.Service1Client();
+                    //chiamo il metodo elimina prodotto, con parametro il prodotto con l'id passato
+                    if (wcf.EliminaProdotto(wcf.getProdById(id)))
+                    {
+                        return RedirectToAction("Prodotti");
                     }
                     else
                         return Content("CAZZO");

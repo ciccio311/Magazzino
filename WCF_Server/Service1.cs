@@ -191,8 +191,31 @@ namespace WCF_Server
                 //ci connettiamo al DB
                 var x = databse1.getsqlconnect(databse1.connectstring());
 
-                //ritorna la lista di prodotti
+                //crea il prodotto
                 if (databse1.CreaProdotto(x, ps))
+                {
+                    return true;
+                }
+                else
+                    return false;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Errore: " + e.ToString());
+                return false;
+            }
+        }
+
+        public bool EliminaProdotto(ProdottoServer ps)
+        {
+            try
+            {
+                //ci connettiamo al DB
+                var x = databse1.getsqlconnect(databse1.connectstring());
+
+                //eliminiamo il prodotto
+                if (databse1.EliminaProdotto(x, ps))
                 {
                     return true;
                 }
