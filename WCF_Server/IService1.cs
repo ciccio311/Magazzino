@@ -35,5 +35,9 @@ namespace WCF_Server
 
         [OperationContract]
         bool CreaUtente(string nome, string cognome, string telefono, string pass, int ceo);
+
+        [OperationContract]
+        bool CreaProdotto(ProdottoServer ps);
+
     }
 }

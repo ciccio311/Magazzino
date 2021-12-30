@@ -20,8 +20,7 @@ namespace WCF_Server
             this.produttore = prod;
             this.prezzo = prez;
             this.quantita = qua;
-            this.categoria = cat;
-            
+            this.categoria = cat;        
             this.posizione = pos;
         }
         public int id { get; set; }
