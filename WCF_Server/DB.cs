@@ -309,78 +309,7 @@ namespace WCF_Server
                      Console.WriteLine("  Message: {0}", ex2.Message);
                      return false;
                  }
-            }
-        }
-
-
-        public List<String> getListaCategorie(MySqlConnection x)
-        {
-            try
-            {
-                List<String> categorie = new List<string>();
-                x.Open();
-                using (MySqlCommand command1 = x.CreateCommand())
-                {
-                    //ritorno tutti i nomi delle categorie
-                    command1.CommandText = "SELECT CATEGORIA.NOME " +
-                                           "FROM CATEGORIA ;";
-
-                    using (MySqlDataReader reader = command1.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            //legge i risultati ottenuti dalla query, in questo caso ritorna i nomi delle categorie
-                            var nome = reader.GetString(0);
-
-                            categorie.Add(nome);
-                        }
-                        x.Close();
-                        return categorie;
-                    }
-                    x.Close();
-                    return null;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("ERRORE: " + e.ToString());
-                return null;
-            }
-        }
-
-
-        public List<String> getListaProduttori(MySqlConnection x)
-        {
-            try
-            {
-                List<String> produttori = new List<string>();
-                x.Open();
-                using (MySqlCommand command1 = x.CreateCommand())
-                {
-                    //ritorno tutti i nomi dei produttori
-                    command1.CommandText = "SELECT PRODUTTORE.NOME " +
-                                           "FROM PRODUTTORE ;";
-
-                    using (MySqlDataReader reader = command1.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            //legge i risultati ottenuti dalla query, in questo caso ritorna i nomi dei produttori
-                            var nome = reader.GetString(0);
-
-                            produttori.Add(nome);
-                        }
-                        x.Close();
-                        return produttori;
-                    }
-                    x.Close();
-                    return null;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("ERRORE: " + e.ToString());
-                return null;
+                //return false;
             }
         }
 

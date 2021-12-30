@@ -127,8 +127,6 @@ namespace ClientWCF.Controllers
             return View(LP);
         }
 
-
-
         public ActionResult CreaProdotto()
         {
             Prodotto p1 = new Prodotto();
@@ -163,5 +161,6 @@ namespace ClientWCF.Controllers
             }
             return View("CAZZO");
         }
+
     }
 }
