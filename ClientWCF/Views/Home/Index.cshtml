@@ -5,6 +5,19 @@
 <div class="jumbotron">
     <h1>MANAGEMENT</h1>
     <p class="lead">Il magazzino più grande d'Italia</p>
-    <p><a href="https://localhost:44352/Utente/Login" class="btn btn-primary btn-lg">Login &raquo;</a></p>
+
+    @{if (Session["ID"] == null)  //se dipendente non loggato, mostro il tasto login
+        {
+            <div class="btn btn-primary btn-lg">
+                @Html.ActionLink("Login", "Login", "Utente", null, new { @style = "color: white" })
+            </div>
+        }
+        else if (Session["ID"] != null) //se dipendente loggato, mostro il tasto logout
+        {
+            <div class="btn btn-primary btn-lg">
+                @Html.ActionLink("Logout", "Logout", "Utente", null, new { @style = "color: white" })
+            </div>
+        }
+      }
 </div>
 

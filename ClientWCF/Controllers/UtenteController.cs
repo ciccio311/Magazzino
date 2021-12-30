@@ -60,6 +60,18 @@ namespace ClientWCF.Controllers
         }
 
 
+        public ActionResult Logout()
+        {
+            try
+            {
+                Session["ID"] = null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERRORE: " + e);
+            }
+            return View("Login");
+        }
 
     }
 }
