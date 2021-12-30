@@ -126,5 +126,42 @@ namespace ClientWCF.Controllers
         
             return View(LP);
         }
+
+
+
+        public ActionResult CreaProdotto()
+        {
+            Prodotto p1 = new Prodotto();
+            return View(p1);
+        }
+
+        [HttpPost]
+        public ActionResult CreaProdotto(Prodotto p1)
+        {
+            if (ModelState.IsValid)
+            {
+                //connessione col service
+                try
+                {
+                    var wcf = new ServiceReference1.Service1Client();
+
+                    var ProductToServer = p1.convertiClientToServer();
+
+
+                    if (wcf.CreaProdotto(ProductToServer))
+                    {
+                        return Content("CREATO");
+                    }
+                    else
+                        return Content("CAZZO");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("ERRORE: " + e.ToString());
+                    return View();
+                }
+            }
+            return View("CAZZO");
+        }
     }
 }

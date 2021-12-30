@@ -31,7 +31,8 @@ namespace WCF_Server
                 //ritorna l utente loggato
                 ds = databse1.accessoutenti(x, id, pswd);
                 return ds;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine("Errore: " + e.ToString());
                 return null;
@@ -98,7 +99,7 @@ namespace WCF_Server
             }
         }
 
-        public bool updateProduct(int id, int quant, string pos,int idDip, string desc, string date)
+        public bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date)
         {
             try
             {
@@ -106,7 +107,7 @@ namespace WCF_Server
                 var x = databse1.getsqlconnect(databse1.connectstring());
 
                 //ritorna la lista di prodotti
-                if (databse1.ProductUpdate(x, id, quant, pos,idDip,desc,date))
+                if (databse1.ProductUpdate(x, id, quant, pos, idDip, desc, date))
                 {
                     return true;
                 }
@@ -120,7 +121,7 @@ namespace WCF_Server
             }
         }
 
-        public bool CreaUtente(string nome, string cognome, string telefono, string pass, int ceo) 
+        public bool CreaUtente(string nome, string cognome, string telefono, string pass, int ceo)
         {
             try
             {
@@ -128,7 +129,7 @@ namespace WCF_Server
                 var x = databse1.getsqlconnect(databse1.connectstring());
 
                 //ritorna la lista di prodotti
-                if (databse1.CreaUtente(x, nome,cognome,telefono,pass,ceo))
+                if (databse1.CreaUtente(x, nome, cognome, telefono, pass, ceo))
                 {
                     return true;
                 }
@@ -182,5 +183,30 @@ namespace WCF_Server
             }
         }
 
+
+        public bool CreaProdotto(ProdottoServer ps)
+        {
+            try
+            {
+                //ci connettiamo al DB
+                var x = databse1.getsqlconnect(databse1.connectstring());
+
+                //ritorna la lista di prodotti
+                if (databse1.CreaProdotto(x, ps))
+                {
+                    return true;
+                }
+                else
+                    return false;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Errore: " + e.ToString());
+                return false;
+            }
+        }
     }
 }
+        
+

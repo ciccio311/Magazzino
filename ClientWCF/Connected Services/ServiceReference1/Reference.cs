@@ -376,6 +376,12 @@ namespace ClientWCF.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getNomiProduttori", ReplyAction="http://tempuri.org/IService1/getNomiProduttoriResponse")]
         System.Threading.Tasks.Task<string[]> getNomiProduttoriAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreaProdotto", ReplyAction="http://tempuri.org/IService1/CreaProdottoResponse")]
+        bool CreaProdotto(ClientWCF.ServiceReference1.ProdottoServer ps);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreaProdotto", ReplyAction="http://tempuri.org/IService1/CreaProdottoResponse")]
+        System.Threading.Tasks.Task<bool> CreaProdottoAsync(ClientWCF.ServiceReference1.ProdottoServer ps);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/updateProduct", ReplyAction="http://tempuri.org/IService1/updateProductResponse")]
         bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date);
         
@@ -478,6 +484,14 @@ namespace ClientWCF.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string[]> getNomiProduttoriAsync() {
             return base.Channel.getNomiProduttoriAsync();
+        }
+        
+        public bool CreaProdotto(ClientWCF.ServiceReference1.ProdottoServer ps) {
+            return base.Channel.CreaProdotto(ps);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CreaProdottoAsync(ClientWCF.ServiceReference1.ProdottoServer ps) {
+            return base.Channel.CreaProdottoAsync(ps);
         }
         
         public bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date) {

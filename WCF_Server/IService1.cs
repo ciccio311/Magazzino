@@ -36,6 +36,9 @@ namespace WCF_Server
         List<String> getNomiProduttori();
 
         [OperationContract]
+        bool CreaProdotto(ProdottoServer ps);
+
+        [OperationContract]
         bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date);
 
         [OperationContract]

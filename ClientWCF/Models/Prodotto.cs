@@ -30,5 +30,19 @@ namespace ClientWCF.Models
             this.quantità = ds.quantita;
             this.posizione = ds.posizione;
         }
+
+        public ProdottoServer convertiClientToServer()
+        {
+
+            ProdottoServer ds = new ProdottoServer();
+            ds.id = this.id;
+            ds.nome = this.nome;
+            ds.produttore = this.produttore;
+            ds.prezzo = this.prezzo;
+            ds.categoria = this.categoria;
+            ds.quantita = this.quantità;
+            ds.posizione = this.posizione;
+            return ds;
+        }
     }
 }

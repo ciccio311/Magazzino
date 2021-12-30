@@ -212,6 +212,7 @@
     <Content Include="Views\Utente\MenuUtente.cshtml" />
     <Content Include="Views\Prodotto\AzioniProdotto.cshtml" />
     <Content Include="Views\Utente\Logout.cshtml" />
+    <Content Include="Views\Prodotto\CreaProdotto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
