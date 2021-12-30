@@ -136,5 +136,30 @@ namespace WCF_Server
                 return false;
             }
         }
-    }
+
+        public bool CreaUtente(string nome, string cognome, string telefono, string pass, int ceo) 
+        {
+            try
+            {
+                //ci connettiamo al DB
+                var x = databse1.getsqlconnect(databse1.connectstring());
+
+                //ritorna la lista di prodotti
+                if (databse1.CreaUtente(x, nome,cognome,telefono,pass,ceo))
+                {
+                    return true;
+                }
+                else
+                    return false;
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Errore: " + e.ToString());
+                return false;
+            }
+        }
+    
+}
 }

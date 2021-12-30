@@ -26,8 +26,7 @@ namespace ClientWCF.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-                
+   
                 //connessione col service
                 try
                 {
@@ -45,6 +44,14 @@ namespace ClientWCF.Controllers
                     {
                         ut.convertiServerToCLient(wcf.Login(ut.id, ut.password));
                         Session["ID"] = ut.id;
+                        if (ut.amministratore == true)
+                        {
+                            Session["CEO"] = 1;
+                        }
+                        else
+                        {
+                            Session["CEO"] = 0;
+                        }
                         return View("MenuUtente", ut);
                     }
 
@@ -59,12 +66,54 @@ namespace ClientWCF.Controllers
                 return View(ut);
         }
 
+        public ActionResult CreaUtente()
+        {
+            Dipendente dp = new Dipendente();
+
+            return View(dp);
+        }
+
+        [HttpPost]
+        public ActionResult CreaUtente(Dipendente dp)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                //connessione col service
+                try
+                {
+                    int ceo = 0;
+                    var wcf = new ServiceReference1.Service1Client();
+                    if (dp.amministratore == true)
+                    {
+                        ceo = 1;
+                    }
+                    else
+                        ceo = 0;
+
+                    if (wcf.CreaUtente(dp.nome, dp.cognome, dp.telefono, dp.password, ceo))
+                    {
+                        return Content("CREATO");
+                    }else
+                        return Content("CAZZO");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("ERRORE: " + e.ToString());
+                    return View();
+                }
+            }
+            return View();
+        }
+
 
         public ActionResult Logout()
         {
             try
             {
                 Session["ID"] = null;
+                Session["CEO"] = null;
             }
             catch (Exception e)
             {

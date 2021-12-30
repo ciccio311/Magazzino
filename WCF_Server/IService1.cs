@@ -32,5 +32,8 @@ namespace WCF_Server
 
         [OperationContract]
         bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date);
+
+        [OperationContract]
+        bool CreaUtente(string nome, string cognome, string telefono, string pass, int ceo);
     }
 }

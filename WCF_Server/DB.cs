@@ -215,6 +215,12 @@ namespace WCF_Server
             {
                 using (MySqlCommand command1 = x.CreateCommand())
                 {
+                    // Must assign both transaction object and connection
+                    // to Command object for a pending local transaction
+                    command1.Connection = x;
+                    command1.Transaction = transaction;
+
+
                     //Mettiamo la vecchia posizione del prodotto come disponibile
                     command1.CommandText = "UPDATE posizione SET Disponibile=1 " +
                               "WHERE posizione.IDPosizione = (SELECT posizione.IDPosizione " +
@@ -239,6 +245,7 @@ namespace WCF_Server
                     command1.CommandText = "INSERT INTO operazione(IDOperazione, IDDipendente, Data, Descrizione, IDProdotto)VALUES(null," + idDip + ", '" + date + "', '" + desc + "'," + id + ");";
                     command1.ExecuteNonQuery();
 
+                    transaction.Commit();
 
                     x.Close();
 
@@ -262,7 +269,58 @@ namespace WCF_Server
                     Console.WriteLine("  Message: {0}", ex2.Message);
                     return false;
                 }
-                return false;
+                
+            }
+        }
+
+        public bool CreaUtente(MySqlConnection x, string nome, string cognome, string telefono, string pass, int ceo)
+        {
+            //dichiariamo la transazione e la facciamo partire
+            
+            x.Open();
+            var transaction = x.BeginTransaction();
+
+
+
+            try
+            {
+                using (MySqlCommand command1 = x.CreateCommand())
+                {
+                    // Must assign both transaction object and connection
+                    // to Command object for a pending local transaction
+                    command1.Connection = x;
+                    command1.Transaction = transaction;
+
+
+                    
+
+                    command1.CommandText = "INSERT INTO Dipendente(IDDipendente, Nome, Cognome, Telefono, Password, Amministratore)VALUES(null,'" + nome + "', '" + cognome + "', '" + telefono + "','" + pass + "'," + ceo + ");";
+                    command1.ExecuteNonQuery();
+                    transaction.Commit();
+
+
+                    x.Close();
+                    return true;
+                }
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERRORE: " + e.ToString());
+                // In caso di errore chiamiamo la Rollback
+                 try
+                 {
+                     //vengono annulate le modifiche in caso di errore e si ripristina il db a prima che si effettuasse la query
+                     transaction.Rollback();
+                     return false;
+                 }
+                 catch (Exception ex2)
+                 {
+                     Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                     Console.WriteLine("  Message: {0}", ex2.Message);
+                     return false;
+                 }
+                //return false;
             }
         }
     }

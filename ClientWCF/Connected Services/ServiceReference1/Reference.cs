@@ -369,6 +369,12 @@ namespace ClientWCF.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/updateProduct", ReplyAction="http://tempuri.org/IService1/updateProductResponse")]
         System.Threading.Tasks.Task<bool> updateProductAsync(int id, int quant, string pos, int idDip, string desc, string date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreaUtente", ReplyAction="http://tempuri.org/IService1/CreaUtenteResponse")]
+        bool CreaUtente(string nome, string cognome, string telefono, string pass, int ceo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreaUtente", ReplyAction="http://tempuri.org/IService1/CreaUtenteResponse")]
+        System.Threading.Tasks.Task<bool> CreaUtenteAsync(string nome, string cognome, string telefono, string pass, int ceo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -452,6 +458,14 @@ namespace ClientWCF.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> updateProductAsync(int id, int quant, string pos, int idDip, string desc, string date) {
             return base.Channel.updateProductAsync(id, quant, pos, idDip, desc, date);
+        }
+        
+        public bool CreaUtente(string nome, string cognome, string telefono, string pass, int ceo) {
+            return base.Channel.CreaUtente(nome, cognome, telefono, pass, ceo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CreaUtenteAsync(string nome, string cognome, string telefono, string pass, int ceo) {
+            return base.Channel.CreaUtenteAsync(nome, cognome, telefono, pass, ceo);
         }
     }
 }
