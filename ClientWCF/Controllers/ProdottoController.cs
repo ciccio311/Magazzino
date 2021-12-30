@@ -106,7 +106,13 @@ namespace ClientWCF.Controllers
                     }
                     else
                     {
-                       LP.ConvertServerList(wcf.getListaProdotti());
+                        //recupero la lista dei nomi delle categorie e la passo alla vista con viewbag.categorie
+                        List<String> nomiCat = new List<string>();
+                        ViewBag.categorie = wcf.getNomiCategorie();
+                        //recupero la lista dei nomi dei produttori e la passo alla vista con viewbag.produttori
+                        List<String> nomiProd = new List<string>();
+                        ViewBag.produttori = wcf.getNomiProduttori();
+                        LP.ConvertServerList(wcf.getListaProdotti());
                         return View(LP);
                     }
 

@@ -29,6 +29,11 @@ namespace WCF_Server
         [OperationContract]
         List<String> getFreePos();
 
+        [OperationContract]
+        List<String> getNomiCategorie();
+
+        [OperationContract]
+        List<String> getNomiProduttori();
 
         [OperationContract]
         bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date);

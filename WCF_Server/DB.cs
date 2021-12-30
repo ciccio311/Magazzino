@@ -114,7 +114,6 @@ namespace WCF_Server
                         x.Close();
                         return lps;
                     }
-
                     x.Close();
                     return null;
                 }
@@ -220,7 +219,6 @@ namespace WCF_Server
                     command1.Connection = x;
                     command1.Transaction = transaction;
 
-
                     //Mettiamo la vecchia posizione del prodotto come disponibile
                     command1.CommandText = "UPDATE posizione SET Disponibile=1 " +
                               "WHERE posizione.IDPosizione = (SELECT posizione.IDPosizione " +
@@ -241,7 +239,6 @@ namespace WCF_Server
                                                         "FROM posizione, prodotto " +
                                                         "WHERE posizione.IDPosizione = prodotto.IDPosizione AND prodotto.IDProdotto =" + id + ");";
                     command1.ExecuteNonQuery();
-
                     command1.CommandText = "INSERT INTO operazione(IDOperazione, IDDipendente, Data, Descrizione, IDProdotto)VALUES(null," + idDip + ", '" + date + "', '" + desc + "'," + id + ");";
                     command1.ExecuteNonQuery();
 
@@ -276,11 +273,8 @@ namespace WCF_Server
         public bool CreaUtente(MySqlConnection x, string nome, string cognome, string telefono, string pass, int ceo)
         {
             //dichiariamo la transazione e la facciamo partire
-            
             x.Open();
             var transaction = x.BeginTransaction();
-
-
 
             try
             {
@@ -290,14 +284,9 @@ namespace WCF_Server
                     // to Command object for a pending local transaction
                     command1.Connection = x;
                     command1.Transaction = transaction;
-
-
-                    
-
                     command1.CommandText = "INSERT INTO Dipendente(IDDipendente, Nome, Cognome, Telefono, Password, Amministratore)VALUES(null,'" + nome + "', '" + cognome + "', '" + telefono + "','" + pass + "'," + ceo + ");";
                     command1.ExecuteNonQuery();
                     transaction.Commit();
-
 
                     x.Close();
                     return true;
@@ -320,7 +309,78 @@ namespace WCF_Server
                      Console.WriteLine("  Message: {0}", ex2.Message);
                      return false;
                  }
-                //return false;
+            }
+        }
+
+
+        public List<String> getListaCategorie(MySqlConnection x)
+        {
+            try
+            {
+                List<String> categorie = new List<string>();
+                x.Open();
+                using (MySqlCommand command1 = x.CreateCommand())
+                {
+                    //ritorno tutti i nomi delle categorie
+                    command1.CommandText = "SELECT CATEGORIA.NOME " +
+                                           "FROM CATEGORIA ;";
+
+                    using (MySqlDataReader reader = command1.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //legge i risultati ottenuti dalla query, in questo caso ritorna i nomi delle categorie
+                            var nome = reader.GetString(0);
+
+                            categorie.Add(nome);
+                        }
+                        x.Close();
+                        return categorie;
+                    }
+                    x.Close();
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERRORE: " + e.ToString());
+                return null;
+            }
+        }
+
+
+        public List<String> getListaProduttori(MySqlConnection x)
+        {
+            try
+            {
+                List<String> produttori = new List<string>();
+                x.Open();
+                using (MySqlCommand command1 = x.CreateCommand())
+                {
+                    //ritorno tutti i nomi dei produttori
+                    command1.CommandText = "SELECT PRODUTTORE.NOME " +
+                                           "FROM PRODUTTORE ;";
+
+                    using (MySqlDataReader reader = command1.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //legge i risultati ottenuti dalla query, in questo caso ritorna i nomi dei produttori
+                            var nome = reader.GetString(0);
+
+                            produttori.Add(nome);
+                        }
+                        x.Close();
+                        return produttori;
+                    }
+                    x.Close();
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERRORE: " + e.ToString());
+                return null;
             }
         }
     }

@@ -364,6 +364,18 @@ namespace ClientWCF.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getFreePos", ReplyAction="http://tempuri.org/IService1/getFreePosResponse")]
         System.Threading.Tasks.Task<string[]> getFreePosAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getNomiCategorie", ReplyAction="http://tempuri.org/IService1/getNomiCategorieResponse")]
+        string[] getNomiCategorie();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getNomiCategorie", ReplyAction="http://tempuri.org/IService1/getNomiCategorieResponse")]
+        System.Threading.Tasks.Task<string[]> getNomiCategorieAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getNomiProduttori", ReplyAction="http://tempuri.org/IService1/getNomiProduttoriResponse")]
+        string[] getNomiProduttori();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getNomiProduttori", ReplyAction="http://tempuri.org/IService1/getNomiProduttoriResponse")]
+        System.Threading.Tasks.Task<string[]> getNomiProduttoriAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/updateProduct", ReplyAction="http://tempuri.org/IService1/updateProductResponse")]
         bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date);
         
@@ -450,6 +462,22 @@ namespace ClientWCF.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string[]> getFreePosAsync() {
             return base.Channel.getFreePosAsync();
+        }
+        
+        public string[] getNomiCategorie() {
+            return base.Channel.getNomiCategorie();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> getNomiCategorieAsync() {
+            return base.Channel.getNomiCategorieAsync();
+        }
+        
+        public string[] getNomiProduttori() {
+            return base.Channel.getNomiProduttori();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> getNomiProduttoriAsync() {
+            return base.Channel.getNomiProduttoriAsync();
         }
         
         public bool updateProduct(int id, int quant, string pos, int idDip, string desc, string date) {
