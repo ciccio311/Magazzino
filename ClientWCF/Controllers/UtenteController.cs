@@ -70,7 +70,8 @@ namespace ClientWCF.Controllers
             {
                 Console.WriteLine("ERRORE: " + e);
             }
-            return View("Login");
+            //ritorno nella home
+            return RedirectToAction("Index", "Home");
         }
 
     }
