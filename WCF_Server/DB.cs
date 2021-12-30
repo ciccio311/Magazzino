@@ -202,9 +202,13 @@ namespace WCF_Server
 
         public bool ProductUpdate(MySqlConnection x, int id, int quant, string pos, int idDip, string desc, string date)
         {
+            //dichiariamo la transazione e la facciamo partire
+            MySqlTransaction transaction;
+            x.Open();
+            transaction = x.BeginTransaction();
+
             try
             {
-                x.Open();
                 using (MySqlCommand command1 = x.CreateCommand())
                 {
                     //Mettiamo la vecchia posizione del prodotto come disponibile
@@ -241,6 +245,19 @@ namespace WCF_Server
             catch (Exception e)
             {
                 Console.WriteLine("ERRORE: " + e.ToString());
+                // In caso di errore chiamiamo la Rollback
+                try
+                {
+                    //vengono annulate le modifiche in caso di errore e si ripristina il db a prima che si effettuasse la query
+                    transaction.Rollback();
+                    return false;
+                }
+                catch (Exception ex2)
+                {
+                    Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                    Console.WriteLine("  Message: {0}", ex2.Message);
+                    return false;
+                }
                 return false;
             }
         }

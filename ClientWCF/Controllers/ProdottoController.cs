@@ -72,7 +72,8 @@ namespace ClientWCF.Controllers
                     //controllo che ritorni un prodotto
                     if (wcf.updateProduct(p1.id, p1.quantità, p1.posizione,i,"Aggiornamento",date))
                     {
-                        return Content("UPDATE");
+                        //ritorno alla view prodotti tramite redirectToAction
+                        return RedirectToAction("Prodotti");
                     }
                     else
                     {
