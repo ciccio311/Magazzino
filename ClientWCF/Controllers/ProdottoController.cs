@@ -129,6 +129,42 @@ namespace ClientWCF.Controllers
 
         public ActionResult CreaProdotto()
         {
+            if (ModelState.IsValid)
+            {
+                //connessione col service
+                try
+                {
+                    var wcf = new ServiceReference1.Service1Client();
+
+                    List<String> nomiCat = new List<string>(); 
+                    foreach(var x in wcf.getNomiCategorie())
+                    {
+                        nomiCat.Add(x);
+                    }
+                    ViewBag.nomiCat = nomiCat;
+
+                    List<String> nomiProd = new List<string>();
+                    foreach (var x in wcf.getNomiProduttori())
+                    {
+                        nomiProd.Add(x);
+                    }
+                    ViewBag.nomiProd = nomiProd;
+
+                    List<String> posti = new List<string>();
+                    foreach (var x in wcf.getFreePos())
+                    {
+                        posti.Add(x);
+                    }
+                    ViewBag.posti = posti;
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("ERRORE: " + e.ToString());
+                    return View();
+                }
+            }
+        
             Prodotto p1 = new Prodotto();
             return View(p1);
         }

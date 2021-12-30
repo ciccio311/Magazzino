@@ -150,18 +150,4 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CreaProdotto">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCF_Server" minOccurs="0" name="ps" nillable="true" type="q5:ProdottoServer" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreaProdottoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CreaProdottoResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
 </xs:schema>

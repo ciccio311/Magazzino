@@ -393,12 +393,6 @@ namespace ClientWCF.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreaUtente", ReplyAction="http://tempuri.org/IService1/CreaUtenteResponse")]
         System.Threading.Tasks.Task<bool> CreaUtenteAsync(string nome, string cognome, string telefono, string pass, int ceo);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreaProdotto", ReplyAction="http://tempuri.org/IService1/CreaProdottoResponse")]
-        bool CreaProdotto(ClientWCF.ServiceReference1.ProdottoServer ps);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreaProdotto", ReplyAction="http://tempuri.org/IService1/CreaProdottoResponse")]
-        System.Threading.Tasks.Task<bool> CreaProdottoAsync(ClientWCF.ServiceReference1.ProdottoServer ps);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -514,14 +508,6 @@ namespace ClientWCF.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> CreaUtenteAsync(string nome, string cognome, string telefono, string pass, int ceo) {
             return base.Channel.CreaUtenteAsync(nome, cognome, telefono, pass, ceo);
-        }
-        
-        public bool CreaProdotto(ClientWCF.ServiceReference1.ProdottoServer ps) {
-            return base.Channel.CreaProdotto(ps);
-        }
-        
-        public System.Threading.Tasks.Task<bool> CreaProdottoAsync(ClientWCF.ServiceReference1.ProdottoServer ps) {
-            return base.Channel.CreaProdottoAsync(ps);
         }
     }
 }
