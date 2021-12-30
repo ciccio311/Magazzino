@@ -25,17 +25,12 @@ namespace WCF_Server
 
             try
             {
-
                 //ci connettiamo al DB
                 var x = databse1.getsqlconnect(databse1.connectstring());
 
                 //ritorna l utente loggato
                 ds = databse1.accessoutenti(x, id, pswd);
-
-
-
                 return ds;
-
             }catch(Exception e)
             {
                 Console.WriteLine("Errore: " + e.ToString());
@@ -49,24 +44,18 @@ namespace WCF_Server
 
             try
             {
-
                 //ci connettiamo al DB
                 var x = databse1.getsqlconnect(databse1.connectstring());
 
                 //ritorna la lista di prodotti
                 lsp = databse1.getListaProdotti(x);
-
-
-
                 return lsp;
-
             }
             catch (Exception e)
             {
                 Console.WriteLine("Errore: " + e.ToString());
                 return null;
             }
-
         }
 
 
@@ -79,11 +68,8 @@ namespace WCF_Server
                 var x = databse1.getsqlconnect(databse1.connectstring());
 
                 //ritorna la lista di prodotti
-                
                 ps = databse1.getProdottoById(x, n);
-
                 return ps;
-
             }
             catch (Exception e)
             {
@@ -103,7 +89,6 @@ namespace WCF_Server
 
                 //ritorna la lista di prodotti
                 postiDisponibili = databse1.getFreePosition(x);
-
                 return postiDisponibili;
             }
             catch (Exception e)
@@ -127,8 +112,6 @@ namespace WCF_Server
                 }
                 else
                     return false;
-
-                
             }
             catch (Exception e)
             {
@@ -151,8 +134,6 @@ namespace WCF_Server
                 }
                 else
                     return false;
-
-
             }
             catch (Exception e)
             {
@@ -161,30 +142,45 @@ namespace WCF_Server
             }
         }
 
-        public bool CreaProdotto(ProdottoServer ps)
+        public List<String> getNomiCategorie()
         {
+            List<String> nomi = new List<String>();
+
             try
             {
                 //ci connettiamo al DB
                 var x = databse1.getsqlconnect(databse1.connectstring());
 
-                //ritorna la lista di prodotti
-                if (databse1.CreaProdotto(x, ps))
-                {
-                    return true;
-                }
-                else
-                    return false;
-
-
+                //ritorna la lista dei nomi delle categorie
+                nomi = databse1.getListaCategorie(x);
+                return nomi;
             }
             catch (Exception e)
             {
                 Console.WriteLine("Errore: " + e.ToString());
-                return false;
+                return null;
             }
         }
 
+        public List<String> getNomiProduttori()
+        {
+            List<String> nomi = new List<String>();
 
-}
+            try
+            {
+                //ci connettiamo al DB
+                var x = databse1.getsqlconnect(databse1.connectstring());
+
+                //ritorna la lista dei nomi dei produttori
+                nomi = databse1.getListaProduttori(x);
+                return nomi;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Errore: " + e.ToString());
+                return null;
+            }
+        }
+
+    }
 }

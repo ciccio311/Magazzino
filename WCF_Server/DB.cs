@@ -114,7 +114,6 @@ namespace WCF_Server
                         x.Close();
                         return lps;
                     }
-
                     x.Close();
                     return null;
                 }
@@ -220,7 +219,6 @@ namespace WCF_Server
                     command1.Connection = x;
                     command1.Transaction = transaction;
 
-
                     //Mettiamo la vecchia posizione del prodotto come disponibile
                     command1.CommandText = "UPDATE posizione SET Disponibile=1 " +
                               "WHERE posizione.IDPosizione = (SELECT posizione.IDPosizione " +
@@ -241,7 +239,6 @@ namespace WCF_Server
                                                         "FROM posizione, prodotto " +
                                                         "WHERE posizione.IDPosizione = prodotto.IDPosizione AND prodotto.IDProdotto =" + id + ");";
                     command1.ExecuteNonQuery();
-
                     command1.CommandText = "INSERT INTO operazione(IDOperazione, IDDipendente, Data, Descrizione, IDProdotto)VALUES(null," + idDip + ", '" + date + "', '" + desc + "'," + id + ");";
                     command1.ExecuteNonQuery();
 
@@ -276,11 +273,8 @@ namespace WCF_Server
         public bool CreaUtente(MySqlConnection x, string nome, string cognome, string telefono, string pass, int ceo)
         {
             //dichiariamo la transazione e la facciamo partire
-            
             x.Open();
             var transaction = x.BeginTransaction();
-
-
 
             try
             {
@@ -290,14 +284,9 @@ namespace WCF_Server
                     // to Command object for a pending local transaction
                     command1.Connection = x;
                     command1.Transaction = transaction;
-
-
-                    
-
                     command1.CommandText = "INSERT INTO Dipendente(IDDipendente, Nome, Cognome, Telefono, Password, Amministratore)VALUES(null,'" + nome + "', '" + cognome + "', '" + telefono + "','" + pass + "'," + ceo + ");";
                     command1.ExecuteNonQuery();
                     transaction.Commit();
-
 
                     x.Close();
                     return true;
@@ -320,63 +309,7 @@ namespace WCF_Server
                      Console.WriteLine("  Message: {0}", ex2.Message);
                      return false;
                  }
-            }
-        }
-
-        public bool CreaProdotto(MySqlConnection x,ProdottoServer ps)
-        {
-            //dichiariamo la transazione e la facciamo partire
-
-            x.Open();
-            var transaction = x.BeginTransaction();
-
-
-
-            try
-            {
-                using (MySqlCommand command1 = x.CreateCommand())
-                {
-                    // Must assign both transaction object and connection
-                    // to Command object for a pending local transaction
-                    command1.Connection = x;
-                    command1.Transaction = transaction;
-
-
-
-
-                    command1.CommandText = "INSERT INTO Prodotto(IDProdotto, Nome, IDProduttore, IDCategoria, PrezzoVendita, Quantita, IDPosizione)VALUES(null,'" + ps.nome + "', " + ps.produttore + ", " + ps.categoria + "," + ps.prezzo + "," + ps.quantita + ",'"+ps.posizione+"');";
-                    command1.ExecuteNonQuery();
-
-                    //aggiorniamo la posizione, che diventerà occupata
-                    command1.CommandText = "UPDATE posizione SET Disponibile=0 " +
-                                            "WHERE posizione.IDPosizione = '"+ps.posizione+"' ;";
-                    command1.ExecuteNonQuery();
-
-
-                    transaction.Commit();
-
-
-                    x.Close();
-                    return true;
-                }
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("ERRORE: " + e.ToString());
-                // In caso di errore chiamiamo la Rollback
-                try
-                {
-                    //vengono annulate le modifiche in caso di errore e si ripristina il db a prima che si effettuasse la query
-                    transaction.Rollback();
-                    return false;
-                }
-                catch (Exception ex2)
-                {
-                    Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
-                    Console.WriteLine("  Message: {0}", ex2.Message);
-                    return false;
-                }
+                //return false;
             }
         }
     }
