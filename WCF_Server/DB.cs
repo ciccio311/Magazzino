@@ -56,7 +56,11 @@ namespace WCF_Server
                             ds1.cognome = reader.GetString(2);
                             ds1.telefono = reader.GetString(3);
                             ds1.password = reader.GetString(4);
-                            ds1.amministratore = false;
+                            var ceo = reader.GetInt32(5);
+                            if (ceo == 1)
+                                ds1.amministratore = true;
+                            else
+                                ds1.amministratore = false;
 
                             x.Close(); //chiudiamo la connessione al DB
                             return ds1;

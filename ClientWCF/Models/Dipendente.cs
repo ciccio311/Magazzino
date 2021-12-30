@@ -27,6 +27,7 @@ namespace ClientWCF.Models
         [Display(Name = "Password")]
         public string password { get; set; }
 
+        [Display(Name = "Amministratore")]
         public bool amministratore { get; set; }
 
         public void convertiServerToCLient(DipendenteServer ds)
